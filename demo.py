@@ -120,17 +120,12 @@ base = 'https://trello.com/1/'
 # Build out the URL based on the documentation
 boards_url = base + 'members/me/boards'
 
-# Let's store our API key and token as parameters
-params_key_and_token = {'key':key,'token':token}
-
-# Since we only want the name of the board, let's supply the 'fields' argument as well. We're also going to 
-# ask for lists, to be used later.
-arguments = {'fields': 'name', 'lists': 'open'}
+# Let's store our API key and token as parameters, and specify we want all open lists,  to be used later.
+params = {'key':key, 'token':token, 'lists': 'open'}
 
 # The requests library has separate methods for get, put, post, and delete. We need a GET here.
-# We need to provide the URL we want to access, the key and token (params_key_and_token) as params, as well as
-# any arguments (arguments) as data.
-response = requests.get(boards_url, params=params_key_and_token, data=arguments)
+# We need to provide the URL we want to access and the key and token (params_key_and_token) as params.
+response = requests.get(boards_url, params=params)
 
 # We should pause here and point out that the requests library is making everying incredibly
 # easy for us. We're able to work in native python dictionaries and requests is automatically
